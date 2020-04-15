@@ -1,8 +1,6 @@
 <template>
   <section class="about_me" id="about">
     <div class="container">
-      <h2>about me</h2>
-
       <div class="summary row mt-5">
         <div class="col-md-6">
           <div class="avatar">
@@ -29,7 +27,7 @@
 
             <p>
               Repositories：
-              <span>{{ user.repos }}</span>
+              <a href="#repositories">{{ user.repos }}</a>
             </p>
 
             <p>

@@ -1,37 +1,51 @@
 <template>
   <div class="home">
-    <div class="content-item">
-      <AboutMe :user="user" />
-    </div>
+    <div class="content-item"></div>
+
     <div
       class="activebg fisrtbg"
       id="pic1"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY1+'px' }"
-    ></div>
-    <div class="content-item">内容2</div>
+    >
+      <div class="overlay"></div>
+      <h1 class="about">ABOUT ME</h1>
+    </div>
+
+    <div class="content-item" style="text-align: center;">
+      <AboutMe :user="user" />
+    </div>
+
     <div
       class="activebg secondbg"
       id="pic2"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY2+'px' }"
-    ></div>
-    <div class="content-item">内容3</div>
+    >
+      <div class="overlay"></div>
+      <h1 class="repositories">REPOSITORIES</h1>
+    </div>
+
+    <div class="content-item">
+      <Repositories />
+    </div>
+
     <div
       class="activebg thirdbg"
       id="pic3"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY3+'px' }"
     ></div>
-    <div class="content-item">内容4</div>
   </div>
 </template>
 
 <script>
 import AboutMe from "../components/AboutMe";
+import Repositories from "../components/Repositories";
 import { apiHelper, Toast } from "../utils/helpers";
 
 export default {
   name: "Home",
   components: {
-    AboutMe
+    AboutMe,
+    Repositories
   },
   data() {
     return {
@@ -43,6 +57,7 @@ export default {
         followers: -1,
         following: -1
       },
+      repos: [],
       ratio: 0.05,
       positionX: "50%",
       positionY1: 30,
@@ -76,7 +91,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: "error",
-          title: "無法取得商品資料，請稍後再試"
+          title: "無法取得資料，請稍後再試"
         });
       }
     },
@@ -115,8 +130,6 @@ export default {
 .content-item {
   background-color: #fff;
   width: 100%;
-  text-align: center;
-  font-size: 30px;
   font-weight: bold;
 }
 
@@ -128,10 +141,11 @@ export default {
   background-attachment: fixed;
   background-position: center 0;
   background-repeat: no-repeat;
+  margin-top: 150px;
 }
 
 .fisrtbg {
-  background-image: url(https://alphacamp.github.io/personal-site-demo/images/profile.jpg);
+  background-image: url(https://alphacamp.github.io/personal-site-demo/images/portfolio/work-6.jpg);
   background-size: 100%;
 }
 
@@ -141,5 +155,19 @@ export default {
 
 .thirdbg {
   background-image: url(https://alphacamp.github.io/personal-site-demo/images/portfolio/work-3.jpg);
+}
+
+.overlay {
+  height: 300px;
+}
+
+.about,
+.repositories {
+  text-align: center;
+  color: white;
+}
+
+.repositories {
+  color: #0047b3;
 }
 </style>

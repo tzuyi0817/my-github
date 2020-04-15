@@ -27,6 +27,9 @@
             <li>
               <a href="#about">about</a>
             </li>
+            <li>
+              <a href="#repositories">repositories</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -37,13 +40,10 @@
         <a href="#home">home</a>
       </li>
       <li>
-        <a href="#service">service</a>
+        <a href="#about">about</a>
       </li>
       <li>
-        <a href="#portfolio">portfolio</a>
-      </li>
-      <li>
-        <a href="#contact">contact</a>
+        <a href="#repositories">repositories</a>
       </li>
     </ul>
   </div>
@@ -136,7 +136,7 @@ nav.bg-dark {
   z-index: 100;
   border: 1xp solid black;
   display: block;
-  margin-top: 60px;
+  margin-top: -78px;
   margin-right: 15px;
   list-style-type: none;
   background: linear-gradient(-100deg, #6666ff, #3333ff) !important;
