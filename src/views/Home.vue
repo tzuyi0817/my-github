@@ -118,7 +118,6 @@ export default {
   text-align: center;
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 70px;
 }
 
 .activebg {

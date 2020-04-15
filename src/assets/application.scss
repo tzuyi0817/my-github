@@ -35,3 +35,7 @@ span {
   @include respond-between(768px, 992px, 10px);
   @include respond-and(768px, 15px);
 }
+
+section {
+  padding: 150px 0;
+}

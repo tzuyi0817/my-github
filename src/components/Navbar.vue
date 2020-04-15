@@ -1,35 +1,68 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <router-link class="navbar-brand" to="/home">
-      <img
-        src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/48_github-512.png"
-        class="logo"
-      />
-    </router-link>
+  <div>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <router-link class="navbar-brand" to="/home">
+        <img
+          src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/48_github-512.png"
+          class="logo"
+        />
+      </router-link>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon" />
-    </button>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        @click.prevent.stop="checked"
+      >
+        <span class="navbar-toggler-icon" />
+      </button>
 
-    <div id="navbarSupportedContent" class="navbar-collapse collapse">
-      <div class="ml-auto d-flex align-items-center">
-        <ul class="nav">
-          <li>
-            <a href="#about">about</a>
-          </li>
-        </ul>
+      <div id="navbarSupportedContent" class="navbar-collapse collapse">
+        <div class="ml-auto d-flex align-items-center">
+          <ul class="nav">
+            <li>
+              <a href="#about">about</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+
+    <ul v-show="open" class="checked-nav">
+      <li>
+        <a href="#home">home</a>
+      </li>
+      <li>
+        <a href="#service">service</a>
+      </li>
+      <li>
+        <a href="#portfolio">portfolio</a>
+      </li>
+      <li>
+        <a href="#contact">contact</a>
+      </li>
+    </ul>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      open: false
+    };
+  },
+  methods: {
+    checked() {
+      this.open = !this.open;
+    }
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 %delay {
@@ -78,7 +111,7 @@
 }
 
 nav.bg-dark {
-  padding: 17px 0 5px 0;
+  padding: 17px 16px 5px;
   background: linear-gradient(-40deg, #6666ff, #3333ff) !important;
 }
 
@@ -95,6 +128,34 @@ nav.bg-dark {
   &:hover {
     opacity: 1;
     @extend %delay;
+  }
+}
+
+.checked-nav {
+  position: fixed;
+  z-index: 100;
+  border: 1xp solid black;
+  display: block;
+  margin-top: 60px;
+  margin-right: 15px;
+  list-style-type: none;
+  background: linear-gradient(-100deg, #6666ff, #3333ff) !important;
+  width: 100%;
+  padding: 25px;
+  text-align: center;
+  li {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid white;
+    padding: 10px;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      color: red;
+      @extend %delay;
+    }
   }
 }
 </style>

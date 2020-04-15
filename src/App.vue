@@ -31,8 +31,4 @@ export default {
   background-color: #fff;
   color: #333;
 }
-
-.container {
-  margin-top: 150px;
-}
 </style>
