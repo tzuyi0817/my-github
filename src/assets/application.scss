@@ -1,0 +1,17 @@
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+h1 {
+  @include respond-between(992px, 1200px, 25px);
+  @include respond-between(768px, 992px, 20px);
+  @include respond-and(768px, 20px);
+}
