@@ -17,5 +17,21 @@
 h1 {
   @include respond-between(992px, 1200px, 25px);
   @include respond-between(768px, 992px, 20px);
-  @include respond-and(768px, 20px);
+  @include respond-and(768px, 25px);
+}
+
+p {
+  color: #767676;
+  font-size: 20px;
+  @include respond-between(992px, 1200px, 15px);
+  @include respond-between(768px, 992px, 10px);
+  @include respond-and(768px, 15px);
+}
+
+span {
+  color: #1a75ff;
+  font-size: 20px;
+  @include respond-between(992px, 1200px, 15px);
+  @include respond-between(768px, 992px, 10px);
+  @include respond-and(768px, 15px);
 }

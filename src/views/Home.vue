@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <div class="content-item">内容1</div>
+    <div class="content-item">
+      <AboutMe :user="user" />
+    </div>
     <div
       class="activebg fisrtbg"
       id="pic1"
@@ -23,10 +25,24 @@
 </template>
 
 <script>
+import AboutMe from "../components/AboutMe";
+import { apiHelper, Toast } from "../utils/helpers";
+
 export default {
   name: "Home",
+  components: {
+    AboutMe
+  },
   data() {
     return {
+      user: {
+        name: "",
+        url: "",
+        image: "",
+        repos: -1,
+        followers: -1,
+        following: -1
+      },
       ratio: 0.05,
       positionX: "50%",
       positionY1: 30,
@@ -36,6 +52,44 @@ export default {
       Y2: 0,
       Y3: 0
     };
+  },
+  created() {
+    this.fetchUser();
+  },
+  methods: {
+    async fetchUser() {
+      try {
+        const { data, statusText } = await apiHelper.get();
+
+        if (statusText !== "OK") {
+          throw new Error(statusText);
+        }
+
+        this.user = {
+          name: data.name,
+          url: data.html_url,
+          image: data.avatar_url,
+          repos: data.public_repos,
+          followers: data.followers,
+          following: data.following
+        };
+      } catch (error) {
+        Toast.fire({
+          icon: "error",
+          title: "無法取得商品資料，請稍後再試"
+        });
+      }
+    },
+    handleScroll() {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+
+      this.positionY1 = this.Y1 - scrollTop * this.ratio;
+      this.positionY2 = this.Y2 - scrollTop * this.ratio;
+      this.positionY3 = this.Y3 - scrollTop * this.ratio;
+    }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
@@ -49,18 +103,6 @@ export default {
       this.positionY2 = this.Y2 = pic2.offsetTop * this.ratio;
       this.positionY3 = this.Y3 = pic3.offsetTop * this.ratio;
     };
-  },
-  methods: {
-    handleScroll() {
-      let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-
-      this.positionY1 = this.Y1 - scrollTop * this.ratio;
-      this.positionY2 = this.Y2 - scrollTop * this.ratio;
-      this.positionY3 = this.Y3 - scrollTop * this.ratio;
-    }
   }
 };
 </script>
@@ -73,10 +115,10 @@ export default {
 .content-item {
   background-color: #fff;
   width: 100%;
-  line-height: 400px;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 70px;
 }
 
 .activebg {
