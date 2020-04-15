@@ -10,6 +10,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 h1 {
   @include respond-between(992px, 1200px, 25px);
   @include respond-between(768px, 992px, 20px);
