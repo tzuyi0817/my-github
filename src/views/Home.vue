@@ -11,9 +11,12 @@
       <h1 class="about">ABOUT ME</h1>
     </div>
 
-    <div class="content-item" style="text-align: center;">
-      <AboutMe :user="user" />
-    </div>
+    <Spinner v-if="isLoading" />
+    <template v-else>
+      <div class="content-item" style="text-align: center;">
+        <AboutMe :user="user" />
+      </div>
+    </template>
 
     <div
       class="activebg secondbg"
@@ -39,13 +42,15 @@
 <script>
 import AboutMe from "../components/AboutMe";
 import Repositories from "../components/Repositories";
+import Spinner from "../components/Spinner";
 import { apiHelper, Toast } from "../utils/helpers";
 
 export default {
   name: "Home",
   components: {
     AboutMe,
-    Repositories
+    Repositories,
+    Spinner
   },
   data() {
     return {
@@ -65,7 +70,8 @@ export default {
       positionY3: 150,
       Y1: 0,
       Y2: 0,
-      Y3: 0
+      Y3: 0,
+      isLoading: true
     };
   },
   created() {
@@ -88,7 +94,10 @@ export default {
           followers: data.followers,
           following: data.following
         };
+
+        this.isLoading = false;
       } catch (error) {
+        this.isLoading = false;
         Toast.fire({
           icon: "error",
           title: "無法取得資料，請稍後再試"

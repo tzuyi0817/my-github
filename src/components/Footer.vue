@@ -1,6 +1,6 @@
 <template>
   <div class="footer-content">
-    <p>&copy; 2020 My github | All Rights Reserved.</p>
+    <p>&copy; 2020 My Github | All Rights Reserved.</p>
 
     <router-link to="/home">
       <img

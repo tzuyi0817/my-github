@@ -6,6 +6,7 @@
           src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/48_github-512.png"
           class="logo"
         />
+        <span class="navbar-title ml-3" style="color: white;">My Github</span>
       </router-link>
 
       <button
@@ -121,7 +122,8 @@ nav.bg-dark {
   max-width: 100px;
 }
 
-.logo {
+.logo,
+.navbar-title {
   width: 50%;
   opacity: 0.7;
   cursor: pointer;

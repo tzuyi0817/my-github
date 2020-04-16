@@ -6,8 +6,10 @@
 
 <style lang="scss" scoped>
 .fail {
-  padding: 100px 0px;
+  padding: 200px 0px;
   margin-bottom: 200px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
