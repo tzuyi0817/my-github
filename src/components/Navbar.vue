@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
       <router-link class="navbar-brand" to="/home">
         <img
           src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/48_github-512.png"
@@ -26,10 +26,10 @@
         <div class="ml-auto d-flex align-items-center">
           <ul class="nav">
             <li>
-              <a href="#about">about</a>
+              <router-link :to="{ name: 'Home', hash: '#home'}">about</router-link>
             </li>
             <li>
-              <a href="#repositories">repositories</a>
+              <router-link :to="{ name: 'Home', hash: '#repositories'}">repositories</router-link>
             </li>
           </ul>
         </div>
@@ -37,14 +37,14 @@
     </nav>
 
     <ul v-show="open" class="checked-nav">
-      <li>
-        <a href="#home">home</a>
+      <li @click.prevent.stop="checked">
+        <router-link to="/home">home</router-link>
       </li>
-      <li>
-        <a href="#about">about</a>
+      <li @click.prevent.stop="checked">
+        <router-link :to="{ name: 'Home', hash: '#home'}">about</router-link>
       </li>
-      <li>
-        <a href="#repositories">repositories</a>
+      <li @click.prevent.stop="checked">
+        <router-link :to="{ name: 'Home', hash: '#repositories'}">repositories</router-link>
       </li>
     </ul>
   </div>

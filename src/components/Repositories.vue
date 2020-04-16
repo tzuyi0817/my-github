@@ -8,17 +8,25 @@
             <div class="col-12">
               <div>
                 <h3>
-                  <router-link to="/" class="link">{{ repo.name }}</router-link>
+                  <router-link
+                    :to="{ name: 'Repo', params: { name: repo.name }}"
+                    class="link"
+                  >{{ repo.name }}</router-link>
                 </h3>
               </div>
             </div>
 
-            <div class="col-12">
-              <p class="description">{{ repo.description }}</p>
+            <div class="ml-2">
+              <b-button v-b-toggle="repo.name" class="m-1">more</b-button>
+              <b-collapse :id="repo.name" class="mt-2">
+                <div class="col-12">
+                  <p class="description">{{ repo.description }}</p>
+                </div>
+              </b-collapse>
             </div>
 
-            <div class="col-12">
-              <p>{{ repo.language }} - Updated on {{ repo.updated_at | date}}</p>
+            <div class="col-12 mt-3">
+              <p>{{ repo.language }} - Updated on {{ repo.pushed_at | date}}</p>
             </div>
           </div>
         </div>
@@ -94,5 +102,12 @@ h3 {
 
 .description {
   color: black;
+}
+
+.m-1 {
+  background-color: #3333ff;
+  &:hover {
+    background-color: #6666ff;
+  }
 }
 </style>

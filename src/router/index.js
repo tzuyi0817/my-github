@@ -17,6 +17,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/repo/:name',
+    name: 'Repo',
+    component: () => import('../views/Repo')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: NotFound
@@ -24,7 +29,20 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition;
+    } else if (to.hash) {
+      if (to.hash === '#home') return { y: 750 }
+      if (to.hash === '#repositories') return { y: 2000 }
+      return {
+        selector: to.hash
+      };
+    } else {
+      return { x: 0, y: 0 };
+    }
+  }
 })
 
 export default router
