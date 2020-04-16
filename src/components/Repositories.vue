@@ -1,10 +1,9 @@
 <template>
   <div>
-    <Spinner v-if="isLoading" />
     <template>
       <section class="repos" id="repositories">
         <div class="container">
-          <div class="repo row mt-5 shadow" v-for="repo in sortRepos" :key="repo.id">
+          <div class="repo row mt-5 shadow" v-for="(repo, index) in repos" :key="index">
             <div class="col-12">
               <div>
                 <h3>
@@ -32,6 +31,7 @@
         </div>
       </section>
     </template>
+    <Spinner v-if="isLoading" />
   </div>
 </template>
 
@@ -48,27 +48,38 @@ export default {
   data() {
     return {
       repos: [],
-      isLoading: true
+      count: 0,
+      isLoading: true,
+      bottom: false
     };
-  },
-  computed: {
-    sortRepos() {
-      return this.repos.sort((a, b) => b.id - a.id); // eslint-disable-line
-    }
   },
   created() {
     this.fetchRepos();
+    window.addEventListener("scroll", () => {
+      this.bottom = this.bottomVisible();
+    });
   },
   methods: {
     async fetchRepos() {
       try {
+        this.isLoading = true;
+
         const { data, statusText } = await apiHelper.get("/repos");
 
         if (statusText !== "OK") {
           throw new Error(statusText);
         }
 
-        this.repos = data;
+        if (this.count > data.length - 1) {
+          this.isLoading = false;
+          Toast.fire({
+            icon: "warning",
+            title: "已無更多的 repository"
+          });
+          return;
+        }
+
+        this.repos.push(data[this.count]);
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
@@ -76,6 +87,21 @@ export default {
           icon: "error",
           title: "無法取得資料，請稍後再試"
         });
+      }
+    },
+    bottomVisible() {
+      const scrollY = window.scrollY;
+      const visible = document.documentElement.clientHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      const bottomOfPage = visible + scrollY >= pageHeight;
+      return bottomOfPage || pageHeight < visible;
+    }
+  },
+  watch: {
+    bottom(bottom) {
+      if (bottom) {
+        this.count++;
+        this.fetchRepos();
       }
     }
   }

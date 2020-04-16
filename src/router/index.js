@@ -34,8 +34,8 @@ const router = new VueRouter({
     if (savedPosition) {
       return savedPosition;
     } else if (to.hash) {
-      if (to.hash === '#home') return { y: 750 }
-      if (to.hash === '#repositories') return { y: 2000 }
+      if (to.hash === '#home') return { y: 1450 }
+      if (to.hash === '#repositories') return { y: 2400 }
       return {
         selector: to.hash
       };

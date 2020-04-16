@@ -8,6 +8,15 @@
       :style="{'background-position-x' :positionX,'background-position-y' :positionY1+'px' }"
     >
       <div class="overlay"></div>
+      <h1 class="resume">Hello, I Am Tzuyi</h1>
+    </div>
+
+    <div
+      class="activebg secondbg"
+      id="pic2"
+      :style="{'background-position-x' :positionX,'background-position-y' :positionY2+'px' }"
+    >
+      <div class="overlay"></div>
       <h1 class="about">ABOUT ME</h1>
     </div>
 
@@ -19,9 +28,9 @@
     </template>
 
     <div
-      class="activebg secondbg"
-      id="pic2"
-      :style="{'background-position-x' :positionX,'background-position-y' :positionY2+'px' }"
+      class="activebg thirdbg"
+      id="pic3"
+      :style="{'background-position-x' :positionX,'background-position-y' :positionY3+'px' }"
     >
       <div class="overlay"></div>
       <h1 class="repositories">REPOSITORIES</h1>
@@ -30,12 +39,6 @@
     <div class="content-item">
       <Repositories />
     </div>
-
-    <div
-      class="activebg thirdbg"
-      id="pic3"
-      :style="{'background-position-x' :positionX,'background-position-y' :positionY3+'px' }"
-    ></div>
   </div>
 </template>
 
@@ -170,13 +173,18 @@ export default {
   height: 300px;
 }
 
+.resume,
 .about,
 .repositories {
   text-align: center;
   color: white;
 }
 
+.about {
+  color: #6666ff;
+}
+
 .repositories {
-  color: #0047b3;
+  color: #3333ff;
 }
 </style>
