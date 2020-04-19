@@ -22,12 +22,19 @@
 
             <p>
               Github 網址：
-              <a :href="user.url" target="_blank">{{ user.url }}</a>
+              <a
+                :href="user.url"
+                target="_blank"
+                style="font-weight: bold;"
+              >{{ user.url }}</a>
             </p>
 
             <p class="repositories">
               Repositories：
-              <router-link :to="{ name: 'Home', hash: '#repositories'}">{{ user.repos }}</router-link>
+              <router-link
+                :to="{ name: 'Home', hash: '#repositories'}"
+                style="font-weight: bold;"
+              >{{ user.repos }}</router-link>
             </p>
 
             <p class="followers">

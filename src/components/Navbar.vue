@@ -26,7 +26,7 @@
         <div class="ml-auto d-flex align-items-center">
           <ul class="nav">
             <li>
-              <router-link :to="{ name: 'Home', hash: '#home'}">about</router-link>
+              <router-link :to="{ name: 'Home', hash: '#about'}">about</router-link>
             </li>
             <li>
               <router-link :to="{ name: 'Home', hash: '#repositories'}">repositories</router-link>
@@ -41,7 +41,7 @@
         <router-link to="/home">home</router-link>
       </li>
       <li @click.prevent.stop="checked">
-        <router-link :to="{ name: 'Home', hash: '#home'}">about</router-link>
+        <router-link :to="{ name: 'Home', hash: '#about'}">about</router-link>
       </li>
       <li @click.prevent.stop="checked">
         <router-link :to="{ name: 'Home', hash: '#repositories'}">repositories</router-link>
@@ -138,7 +138,7 @@ nav.bg-dark {
   z-index: 100;
   border: 1xp solid black;
   display: block;
-  margin-top: -78px;
+  margin-top: 70px;
   margin-right: 15px;
   list-style-type: none;
   background: linear-gradient(-100deg, #6666ff, #3333ff) !important;

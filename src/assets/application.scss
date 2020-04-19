@@ -38,6 +38,7 @@ p {
 span {
   color: #1a75ff;
   font-size: 20px;
+  font-weight: bold;
   @include respond-between(992px, 1200px, 15px);
   @include respond-between(768px, 992px, 10px);
   @include respond-and(768px, 15px);

@@ -15,9 +15,9 @@
       id="pic2"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY2+'px' }"
     >
-      <div class="left"></div>
+      <div class="about-left"></div>
 
-      <h1 style="color: #3333ff">ABOUT ME</h1>
+      <h1 style="color: #3333ff; text-align: center;">ABOUT ME</h1>
 
       <div class="about">
         <Spinner v-if="isLoading" />
@@ -34,12 +34,21 @@
       id="pic3"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY3+'px' }"
     >
-      <div class="overlay"></div>
-      <h1 class="repositories">REPOSITORIES</h1>
+      <div class="repo-left">
+        <div>
+          <p>個人 Side Project - 採用無限滾動加載方式呈現，每次增加一筆資料，可點擊 more 按鈕查看專案描述；點擊專案標題會連結到專案各別詳細資訊頁面。</p>
+        </div>
+      </div>
+
+      <div class="repo-middle"></div>
+
+      <h1 class="repo-title" style="color: #6666ff; text-align: center;">REPOSITORIES</h1>
     </div>
 
-    <div class="content-item">
-      <Repositories />
+    <div class="repositories">
+      <div class="content-item">
+        <Repositories />
+      </div>
     </div>
   </div>
 </template>
@@ -140,12 +149,14 @@ export default {
 @mixin respond-between($lower, $upper, $height) {
   @media screen and (min-width: $lower) and (max-width: $upper) {
     height: $height;
+    @content;
   }
 }
 
 @mixin respond-and($upper, $height) {
   @media screen and (max-width: $upper) {
     height: $height;
+    @content;
   }
 }
 
@@ -157,7 +168,6 @@ export default {
 .content-item {
   background-color: #fff;
   width: 100%;
-  font-weight: bold;
 }
 
 .activebg {
@@ -166,29 +176,35 @@ export default {
   background-attachment: fixed;
   background-position: center 0;
   background-repeat: no-repeat;
-  margin-top: 150px;
   width: 100%;
   display: flex;
   align-items: center;
 }
 
 .fisrtbg {
-  background-image: url(https://alphacamp.github.io/personal-site-demo/images/portfolio/work-6.jpg);
+  background-image: url("https://alphacamp.github.io/personal-site-demo/images/profile.jpg");
+  background-size: cover;
   justify-content: center;
   height: 600px;
+  margin-top: 250px;
 }
 
 .secondbg {
   background-image: url(https://alphacamp.github.io/personal-site-demo/images/abg.jpg);
   justify-content: space-between;
   height: 770px;
+  margin-top: 150px;
   @include respond-between(992px, 1200px, 650px);
-  @include respond-between(768px, 992px, 560px);
+  @include respond-between(768px, 992px, 545px);
   @include respond-and(768px, 550px);
 }
 
 .thirdbg {
   background-image: url(https://alphacamp.github.io/personal-site-demo/images/portfolio/work-3.jpg);
+  height: 770px;
+  @include respond-between(992px, 1200px, 650px);
+  @include respond-between(768px, 992px, 545px);
+  @include respond-and(768px, 550px);
 }
 
 .resume {
@@ -196,13 +212,32 @@ export default {
   color: #fff;
 }
 
-.left {
+.about-left,
+.repo-middle {
   width: 0;
   height: 0;
   border-bottom: 770px solid #fff;
   border-right: 200px solid transparent;
   @media screen and (max-width: 768px) {
     display: none;
+  }
+}
+
+.repo-left {
+  width: 200px;
+  height: 770px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  @include respond-between(992px, 1200px, 650px) {
+    width: 170px;
+  }
+  @include respond-between(768px, 992px, 545px) {
+    width: 145px;
+  }
+  @include respond-and(768px, 550px) {
+    width: 120px;
+    padding: 10px;
   }
 }
 
@@ -213,6 +248,7 @@ export default {
   }
 }
 
-.repositories {
+.repo-title {
+  transform: translateX(30px);
 }
 </style>

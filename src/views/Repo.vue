@@ -2,6 +2,7 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
+      <div class="overlay"></div>
       <div class="repo shadow">
         <b-card text-variant="black" :title="repo.name" class="card">
           <b-card-text style="padding: 50px 10px;">{{ repo.description }}</b-card-text>
@@ -74,8 +75,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.repo {
-  margin-top: 150px;
+.overlay {
+  height: 150px;
 }
 
 .btn {
