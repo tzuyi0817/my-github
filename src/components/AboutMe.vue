@@ -1,14 +1,14 @@
 <template>
   <section class="about_me" id="about">
-    <div class="container shadow">
-      <div class="summary row mt-5">
-        <div class="col-md-4">
+    <div class="container col-11">
+      <div class="summary shadow">
+        <div class="col-10">
           <div class="avatar">
             <img :src="user.image" alt="avatar" />
           </div>
         </div>
 
-        <div class="personal col-md-6 offset-md-2">
+        <div class="personal col-12">
           <div class="personal-info">
             <p class="name">
               Name：
@@ -63,15 +63,13 @@ img {
 }
 
 .summary {
-  padding: 10px 0;
+  padding: 30px 0;
 }
 
 .personal {
   display: flex;
   align-items: center;
-  @media screen and (max-width: 768px) {
-    margin-top: 50px;
-  }
+  margin-top: 50px;
 }
 
 .personal-info {

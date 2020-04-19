@@ -7,7 +7,6 @@
       id="pic1"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY1+'px' }"
     >
-      <div class="overlay"></div>
       <h1 class="resume">Hello, I Am Tzuyi</h1>
     </div>
 
@@ -16,16 +15,19 @@
       id="pic2"
       :style="{'background-position-x' :positionX,'background-position-y' :positionY2+'px' }"
     >
-      <div class="overlay"></div>
-      <h1 class="about">ABOUT ME</h1>
-    </div>
+      <div class="left"></div>
 
-    <Spinner v-if="isLoading" />
-    <template v-else>
-      <div class="content-item" style="text-align: center;">
-        <AboutMe :user="user" />
+      <h1 style="color: #3333ff">ABOUT ME</h1>
+
+      <div class="about">
+        <Spinner v-if="isLoading" />
+        <template v-else>
+          <div class="content-item" style="text-align: center;">
+            <AboutMe :user="user" />
+          </div>
+        </template>
       </div>
-    </template>
+    </div>
 
     <div
       class="activebg thirdbg"
@@ -135,8 +137,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $height) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    height: $height;
+  }
+}
+
+@mixin respond-and($upper, $height) {
+  @media screen and (max-width: $upper) {
+    height: $height;
+  }
+}
+
 .home {
   height: 100%;
+  overflow: hidden;
 }
 
 .content-item {
@@ -147,44 +162,57 @@ export default {
 
 .activebg {
   position: relative;
-  width: 100%;
-  height: 600px;
   background: #fff;
   background-attachment: fixed;
   background-position: center 0;
   background-repeat: no-repeat;
   margin-top: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .fisrtbg {
   background-image: url(https://alphacamp.github.io/personal-site-demo/images/portfolio/work-6.jpg);
-  background-size: 100%;
+  justify-content: center;
+  height: 600px;
 }
 
 .secondbg {
   background-image: url(https://alphacamp.github.io/personal-site-demo/images/abg.jpg);
+  justify-content: space-between;
+  height: 770px;
+  @include respond-between(992px, 1200px, 650px);
+  @include respond-between(768px, 992px, 560px);
+  @include respond-and(768px, 550px);
 }
 
 .thirdbg {
   background-image: url(https://alphacamp.github.io/personal-site-demo/images/portfolio/work-3.jpg);
 }
 
-.overlay {
-  height: 300px;
+.resume {
+  text-align: center;
+  color: #fff;
 }
 
-.resume,
-.about,
-.repositories {
-  text-align: center;
-  color: white;
+.left {
+  width: 0;
+  height: 0;
+  border-bottom: 770px solid #fff;
+  border-right: 200px solid transparent;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 
 .about {
-  color: #6666ff;
+  width: 50%;
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
 }
 
 .repositories {
-  color: #3333ff;
 }
 </style>
